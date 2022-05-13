@@ -19,7 +19,7 @@ spec:
           hostpath:
           path: /mnt/data
       
-	  containers:
+      containers:
         - name: container1-nginx
           image: nginx
           volumemounts:
