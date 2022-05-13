@@ -1,0 +1,32 @@
+kind: deployment
+apiversion: apps/v1
+metadata:
+  name: demo-app
+spec:
+  selector:
+    matchlabels:
+      environment: dev
+      app: demo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        environment: dev
+        app: demo
+    spec:
+      volumes:
+        - name: volume
+          hostpath:
+          path: /mnt/data
+      
+	  containers:
+        - name: container1-nginx
+          image: nginx
+          volumemounts:
+            – name: volume
+              mountpath: "/var/nginx-data"
+        – name: container2-tomcat
+          image: tomcat
+          volumemounts:
+            – name: volume
+              mountpath: "/var/tomcat-data"
